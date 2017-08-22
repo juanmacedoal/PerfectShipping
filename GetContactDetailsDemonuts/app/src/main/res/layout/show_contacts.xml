@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_ShowContactsMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+
+        <!-- The Contact's Display Names will get displayed in the AutoCompleteTextView upon typing into it. -->
+        <!-- Property "android:drawableRight" will show the specified icon to the Right side of the AutoCompleteTextView -->
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Contactos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/at_name"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginBottom="14dp"
+        android:completionThreshold="1"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:layout_above="@+id/t2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <!-- On the Activity Start, focus will be on the AutoCompleteTextView -->
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/at_mail"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginBottom="14dp"
+        android:completionThreshold="1"
+        android:ems="10"
+        android:inputType="textEmailAddress|textWebEmailAddress"
+        android:singleLine="true"
+        android:visibility="invisible"
+        android:layout_above="@+id/t3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <!-- On the Activity Start, focus will be on the AutoCompleteTextView -->
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/at_phone"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_above="@+id/at_address"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="25dp"
+        android:completionThreshold="1"
+        android:ems="10"
+        android:inputType="number|phone"
+        android:singleLine="true"
+        android:visibility="invisible">
+
+        <!-- On the Activity Start, focus will be on the AutoCompleteTextView -->
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/at_address"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_above="@+id/fab"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="24dp"
+        android:completionThreshold="1"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:singleLine="true"
+        android:visibility="invisible">
+
+        <!-- On the Activity Start, focus will be on the AutoCompleteTextView -->
+        <requestFocus />
+    </EditText>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_directions"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_mapmode"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible"
+        android:layout_toLeftOf="@+id/fab"
+        android:layout_toStartOf="@+id/fab"
+        android:layout_marginRight="21dp"
+        android:layout_marginEnd="21dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/at_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/t2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/at_mail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"
+        android:text="Mail" />
+
+    <TextView
+        android:id="@+id/t3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/at_phone"
+        android:layout_alignParentLeft="true"
+        android:visibility="invisible"
+        android:layout_alignParentStart="true"
+        android:text="Phone" />
+
+    <TextView
+        android:id="@+id/t4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/at_address"
+        android:layout_alignParentLeft="true"
+        android:visibility="invisible"
+        android:layout_alignParentStart="true"
+        android:text="Address" />
+
+
+
+
+
+</RelativeLayout>
