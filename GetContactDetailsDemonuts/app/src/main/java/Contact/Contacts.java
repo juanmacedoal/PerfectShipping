@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,12 +39,13 @@ public class Contacts {
         int i = 0;
         if (cur.getCount() > 0) {
             while (cur.moveToNext()) {
+
                 String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
                 String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                 if (Integer.parseInt(cur.getString(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
                     System.out.println("name : " + name + ", ID : " + id);
                     contactList.put("name", name);
-
+                  /*
                     // get the phone number
                     Cursor pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
                             ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = ?",
@@ -401,6 +403,84 @@ public class Contacts {
 
     }
 
+    public static JSONObject id_return(ContentResolver contentResolver, String name) throws JSONException {
+        String id_name=null;
+        Log.e("ahjosjha", name);
+
+        Uri resultUri = ContactsContract.Contacts.CONTENT_URI;
+        Cursor cont = contentResolver.query(resultUri, null, null, null, null);
+        String whereName = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME + " = ?" ;
+        String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE,name};
+        Cursor nameCur = contentResolver.query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams, ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME);
+        while (nameCur.moveToNext()) {
+            id_name = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID));}
+        nameCur.close();
+        cont.close();
+        nameCur.close();
+//for calling of following method
+
+
+        return showinformation(contentResolver, id_name);
+    }
+
+    //method for showing information like name ,phone, email and other thing you want
+    public static JSONObject showinformation(ContentResolver contentResolver, String  id) throws JSONException {
+        JSONObject contacts = new JSONObject();
+        String name=null;
+        String phone=null;
+        String email=null;
+        String address=null;
+        Uri resultUri = ContactsContract.Contacts.CONTENT_URI;
+        Cursor cont = contentResolver.query(resultUri, null, null, null, null);
+        String whereName = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID+ " = ?" ;
+
+        String[] whereNameParams1 = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE,id};
+        Cursor nameCur1 = contentResolver.query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams1, ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME);
+        while (nameCur1.moveToNext()) {
+            contacts.put("name", nameCur1.getString(nameCur1.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME)));
+        }
+        nameCur1.close();
+        cont.close();
+        nameCur1.close();
+
+
+
+        Cursor cursor = contentResolver.query(
+                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                null,
+                ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = ?",
+                new String[]{id}, null);
+
+        while (cursor.moveToNext())
+        {
+            contacts.put("phone" , cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
+        }
+
+        cursor.close();
+
+
+
+        Cursor emails = contentResolver.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, null, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + id, null, null);
+        while (emails.moveToNext()) {
+            contacts.put("email",emails.getString(emails.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA)));
+        }
+        emails.close();
+
+        //Find Postal
+        Cursor postal = contentResolver.query(ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_URI, null, ContactsContract.CommonDataKinds.StructuredPostal.CONTACT_ID + " = " + id, null, null);
+        while (postal.moveToNext()) {
+            contacts.put("address", postal.getString(postal.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.DATA)));
+        }
+        postal.close();
+        //showing result
+
+
+
+        return contacts;
+
+
+    }
+
     /** No se usa
      * @param contactHelper
      * @return
@@ -448,9 +528,9 @@ public class Contacts {
             counter = 0;
             while (cursor.moveToNext()) {
 
-
                 String contact_id = cursor.getString(cursor.getColumnIndex(_ID));
                 String name = cursor.getString(cursor.getColumnIndex(DISPLAY_NAME));
+                contactList.put("name", name);
 
 
                 int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex(HAS_PHONE_NUMBER)));
@@ -461,8 +541,7 @@ public class Contacts {
                     contactList.put("id", contact_id);
 
 
-                    if (name == null)
-                        contactList.put("name", "");
+                   // if (name == null)
 
                     contactList.put("name", name);
 
@@ -470,7 +549,7 @@ public class Contacts {
                     //This is to read multiple phone numbers associated with the same contact
                     Cursor phoneCursor = contentResolver.query(PhoneCONTENT_URI, null, Phone_CONTACT_ID + " = ?", new String[]{contact_id}, null);
 
-
+/*
                     while (phoneCursor.moveToNext()) {
 
                         phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(NUMBER));
@@ -515,9 +594,9 @@ public class Contacts {
                     if (confirm == 2 || confirm == 1 || confirm == 0)
                         contactList.put("postal", "");
 
-                    postalCursor.close();
+                    postalCursor.close();*/
 
-                    Log.d("Contactlist", contactList.toString());
+                    Log.d("Contactlist", contactList.toString() + name);
                     contacts.put(counter, contactList);
                     counter++;
 

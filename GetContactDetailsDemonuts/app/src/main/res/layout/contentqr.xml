@@ -1,0 +1,159 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Street"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Street"
+        android:layout_marginTop="10dp"
+        android:text="Contact QR"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/Street"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Street"
+        android:textSize="20dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/City"
+        android:layout_alignStart="@+id/City"
+         />
+
+    <TextView
+        android:id="@+id/City"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="City"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@+id/Street"
+        android:layout_alignLeft="@+id/State"
+        android:layout_alignStart="@+id/State" />
+
+
+    <TextView
+        android:id="@+id/State"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="State"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@+id/City"
+        android:layout_alignLeft="@+id/Postalcode"
+        android:layout_alignStart="@+id/Postalcode" />
+
+    <TextView
+        android:id="@+id/Postalcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/State"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:layout_toRightOf="@+id/imageView"
+        android:text="Postalcode"
+        android:textSize="20dp" />
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#393b3e"
+                android:layout_alignParentTop="true"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:id="@+id/imageView"
+                android:layout_below="@+id/Postalcode"
+                tools:ignore="UnknownId"
+                android:src="@drawable/code"
+                android:contentDescription=""
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#393b3e"
+                android:layout_alignParentTop="true"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/license_agree_reject"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingBottom="6dip"
+                    android:paddingLeft="6dip"
+                    android:paddingRight="6dip"
+                    android:paddingTop="6dip"
+                    android:text="Cancel" />
+
+                <View
+                    android:layout_width="1dip"
+                    android:layout_height="match_parent"
+                    android:background="#393b3e"
+                    android:layout_centerHorizontal="true"/>
+
+                <Button
+                    android:id="@+id/license_agree_accept"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingBottom="6dip"
+                    android:paddingLeft="6dip"
+                    android:paddingRight="6dip"
+                    android:paddingTop="6dip"
+                    android:text="Accept" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#393b3e"
+                android:layout_alignParentBottom="true"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

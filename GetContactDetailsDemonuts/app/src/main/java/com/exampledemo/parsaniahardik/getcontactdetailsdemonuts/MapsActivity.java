@@ -1,12 +1,17 @@
 package com.exampledemo.parsaniahardik.getcontactdetailsdemonuts;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.provider.ContactsContract;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -22,10 +27,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     String address;
+    String street, city, state, postalcode, email, name, phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,21 +42,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
-
-        Intent iin= getIntent();
+        Intent iin = getIntent();
         Bundle bundle = iin.getExtras();
 
+        street = bundle.getString("street");
+        city = bundle.getString("city");
+        state = bundle.getString("state");
+        postalcode = bundle.getString("code");
+        name = bundle.getString("name");
+        phone = bundle.getString("phone");
+        email = bundle.getString("email");
+
+
+
         address = bundle.getString("address");
+        Log.d("DIRECCION", address);
     }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
-
 
 
     /**
@@ -78,8 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // Add a marker in Sydney and move the camera
                 LatLng sydney = new LatLng(latitude, longitude);
                 mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in "+ address));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                mMap.animateCamera( CameraUpdateFactory.zoomTo( 10.0f ) );
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15));
                 mMap.getUiSettings().setZoomControlsEnabled(true);
             }
         } catch (IOException e) {
@@ -87,6 +93,59 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_map, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menu) {
+        Intent intent;
+
+        switch (menu.getItemId()) {
+            case R.id.accept:
+                intent = new Intent(getApplication(), QR.class);
+                intent.putExtra("street", street);
+                intent.putExtra("city", city);
+                intent.putExtra("state", state);
+                intent.putExtra("code", postalcode);
+                intent.putExtra("name", name);
+                intent.putExtra("phone", phone);
+                intent.putExtra("email", email);
+                startActivityForResult(intent, 1);
+
+                final ProgressDialog progressDialog = new ProgressDialog(this,
+                        R.style.AppTheme);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Creating QR...");
+                progressDialog.show();
+
+
+
+                // TODO: Implement your own authentication logic here.
+
+                new android.os.Handler().postDelayed(
+                        new Runnable() {
+                            public void run() {
+                                // On complete call either onLoginSuccess or onLoginFailed
+                                finish();
+                                // onLoginFailed();
+                                progressDialog.dismiss();
+                            }
+                        }, 6000);
+
+                return true;
+            case R.id.back:
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(menu);
+        }
+    }
+
 
 
 

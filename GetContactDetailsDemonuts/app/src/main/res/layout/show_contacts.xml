@@ -11,12 +11,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    tools:context=".Contacts">
 
         <!-- The Contact's Display Names will get displayed in the AutoCompleteTextView upon typing into it. -->
         <!-- Property "android:drawableRight" will show the specified icon to the Right side of the AutoCompleteTextView -->
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -28,136 +35,229 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
         android:textSize="30dp" />
 
-    <EditText
-        android:id="@+id/at_name"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginBottom="14dp"
-        android:completionThreshold="1"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:singleLine="true"
-        android:layout_above="@+id/t2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/at_name"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Name" />
 
-        <!-- On the Activity Start, focus will be on the AutoCompleteTextView -->
-        <requestFocus />
-    </EditText>
+        <AutoCompleteTextView
+            android:id="@+id/at_name"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_above="@+id/t2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="14dp"
+            android:completionThreshold="1"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textCapSentences|textPersonName"
+            android:singleLine="true">
 
-    <EditText
-        android:id="@+id/at_mail"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginBottom="14dp"
-        android:completionThreshold="1"
-        android:ems="10"
-        android:inputType="textEmailAddress|textWebEmailAddress"
-        android:singleLine="true"
-        android:visibility="invisible"
-        android:layout_above="@+id/t3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+            <!-- On the Activity Start, focus will be on the AutoCompleteTextView -->
+            <requestFocus />
+        </AutoCompleteTextView>
 
-        <!-- On the Activity Start, focus will be on the AutoCompleteTextView -->
-        <requestFocus />
-    </EditText>
+        <TextView
+            android:id="@+id/t2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/at_mail"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:visibility="invisible"
+            android:text="Mail" />
 
-    <EditText
-        android:id="@+id/at_phone"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_above="@+id/at_address"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="25dp"
-        android:completionThreshold="1"
-        android:ems="10"
-        android:inputType="number|phone"
-        android:singleLine="true"
-        android:visibility="invisible">
+        <EditText
+            android:id="@+id/at_mail"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_above="@+id/t3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="14dp"
+            android:completionThreshold="1"
+            android:ems="10"
+            android:hint="Mail"
+            android:inputType="textCapSentences|textEmailAddress|textWebEmailAddress"
+            android:singleLine="true"
+            android:visibility="invisible">
 
-        <!-- On the Activity Start, focus will be on the AutoCompleteTextView -->
-        <requestFocus />
-    </EditText>
+            <!-- On the Activity Start, focus will be on the AutoCompleteTextView -->
+            <requestFocus />
+        </EditText>
 
-    <EditText
-        android:id="@+id/at_address"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_above="@+id/fab"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="24dp"
-        android:completionThreshold="1"
-        android:ems="10"
-        android:inputType="textPostalAddress"
-        android:singleLine="true"
-        android:visibility="invisible">
+        <TextView
+            android:id="@+id/t3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/at_phone"
+            android:layout_alignParentLeft="true"
+            android:visibility="invisible"
+            android:layout_alignParentStart="true"
+            android:text="Phone" />
 
-        <!-- On the Activity Start, focus will be on the AutoCompleteTextView -->
-        <requestFocus />
-    </EditText>
+        <EditText
+            android:id="@+id/at_phone"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_above="@+id/at_address"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="25dp"
+            android:completionThreshold="1"
+            android:ems="10"
+            android:hint="Phone"
+            android:inputType="textCapSentences|number|phone"
+            android:singleLine="true"
+            android:visibility="invisible">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_directions"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+            <!-- On the Activity Start, focus will be on the AutoCompleteTextView -->
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/t4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/at_address"
+            android:layout_alignParentLeft="true"
+            android:visibility="invisible"
+            android:layout_alignParentStart="true"
+            android:text="Street" />
+
+        <EditText
+            android:id="@+id/at_address"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_above="@+id/fab"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="24dp"
+            android:completionThreshold="1"
+            android:ems="10"
+            android:hint="Street"
+            android:inputType="textCapSentences|textPostalAddress"
+            android:singleLine="true"
+            android:visibility="invisible">
+
+            <!-- On the Activity Start, focus will be on the AutoCompleteTextView -->
+            <requestFocus />
+        </EditText>
+
+
+
+        <TextView
+            android:id="@+id/t6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/at_door"
+            android:layout_alignParentLeft="true"
+            android:visibility="invisible"
+            android:layout_alignParentStart="true"
+            android:text="City" />
+
+        <EditText
+            android:id="@+id/at_city"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_above="@+id/t6"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="24dp"
+            android:completionThreshold="1"
+            android:ems="10"
+            android:hint="City"
+            android:inputType="textCapSentences|textPostalAddress"
+            android:singleLine="true"
+            android:visibility="invisible">
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/t7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/at_city"
+            android:layout_alignParentLeft="true"
+            android:visibility="invisible"
+            android:layout_alignParentStart="true"
+            android:text="State / Province / Region" />
+
+        <EditText
+            android:id="@+id/at_state"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_above="@+id/t7"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="24dp"
+            android:completionThreshold="1"
+            android:ems="10"
+            android:hint="State / Province / Region"
+            android:inputType="textCapSentences|textPostalAddress"
+            android:singleLine="true"
+            android:visibility="invisible">
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/t8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/at_state"
+            android:layout_alignParentLeft="true"
+            android:visibility="invisible"
+            android:layout_alignParentStart="true"
+            android:text="Postal Code" />
+
+        <EditText
+            android:id="@+id/at_postalcode"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_above="@+id/t8"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="24dp"
+            android:completionThreshold="1"
+            android:ems="10"
+            android:hint="Postal Code"
+            android:inputType="textCapSentences|textPostalAddress"
+            android:singleLine="true"
+            android:visibility="invisible">
+
+            <requestFocus />
+        </EditText>
+
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_mapmode"
         android:layout_alignParentBottom="true"
-        android:visibility="invisible"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
         android:layout_toLeftOf="@+id/fab"
         android:layout_toStartOf="@+id/fab"
-        android:layout_marginRight="21dp"
-        android:layout_marginEnd="21dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/at_name"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Name" />
-
-    <TextView
-        android:id="@+id/t2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/at_mail"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:visibility="invisible"
-        android:text="Mail" />
-
-    <TextView
-        android:id="@+id/t3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/at_phone"
-        android:layout_alignParentLeft="true"
-        android:visibility="invisible"
-        android:layout_alignParentStart="true"
-        android:text="Phone" />
-
-    <TextView
-        android:id="@+id/t4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/at_address"
-        android:layout_alignParentLeft="true"
-        android:visibility="invisible"
-        android:layout_alignParentStart="true"
-        android:text="Address" />
+        app:srcCompat="@android:drawable/ic_menu_mapmode" />
 
 
 
