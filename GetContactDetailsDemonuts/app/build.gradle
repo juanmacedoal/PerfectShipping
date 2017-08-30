@@ -8,6 +8,7 @@ android {
         cruncherEnabled = false
     }
 
+
     defaultConfig {
         applicationId "com.exampledemo.parsaniahardik.getcontactdetailsdemonuts"
         minSdkVersion 16

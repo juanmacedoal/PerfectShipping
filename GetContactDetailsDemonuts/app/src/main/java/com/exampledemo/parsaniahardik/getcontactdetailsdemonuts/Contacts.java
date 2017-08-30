@@ -68,11 +68,15 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
     private EditText aphone, amail, apostal, acity, adoor, astate, acode;
     private TextView tvname, tvphone, tvmail, tvpostal, t2, t3, t4, t5, t6, t7, t8;
     private ArrayAdapter<String> adapter;
+    private SqlHelper sqlHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_contacts);
+
+        sqlHelper = new SqlHelper(this);
+
 
         btnMap = (FloatingActionButton) findViewById(R.id.map);
 
@@ -137,6 +141,13 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                     // Perform action on key press
                     boolean success = Contact.Contacts.insertContact(getContentResolver(), String.valueOf(aname.getText())
                             , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
+                    if(sqlHelper.find_contact(Integer.parseInt(String.valueOf(aphone.getText())))) {
+                        sqlHelper.update_contact();
+
+                    } else{
+                        sqlHelper.create_contact(String.valueOf(aname.getText()), Integer.parseInt(String.valueOf(aphone.getText())), String.valueOf(amail.getText())
+                                , String.valueOf(astate.getText()), String.valueOf(acity.getText()), String.valueOf(adoor.getText()), String.valueOf(acode.getText()));
+                    }
                     if (success)
                         Toast.makeText(getApplicationContext(), "Contact modify!",
                                 Toast.LENGTH_LONG).show();

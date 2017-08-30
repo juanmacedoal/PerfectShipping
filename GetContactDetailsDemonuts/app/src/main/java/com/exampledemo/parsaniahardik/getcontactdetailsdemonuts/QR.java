@@ -48,7 +48,6 @@ public class QR extends AppCompatActivity {
         city = bundle.getString("city");
         state = bundle.getString("state");
         postalcode = bundle.getString("code");
-        street = bundle.getString("street");
         name = bundle.getString("name");
         phone = bundle.getString("phone");
         email = bundle.getString("email");
@@ -59,7 +58,6 @@ public class QR extends AppCompatActivity {
             contactList.put("City", city);
             contactList.put("State", state);
             contactList.put("PostalCode", postalcode);
-            contactList.put("Street", street);
             contactList.put("Name", name);
             contactList.put("Phone", phone);
             contactList.put("Email", email);

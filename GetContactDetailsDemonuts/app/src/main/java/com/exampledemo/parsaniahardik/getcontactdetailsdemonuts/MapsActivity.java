@@ -134,7 +134,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 // onLoginFailed();
                                 progressDialog.dismiss();
                             }
-                        }, 6000);
+                        }, 3000);
 
                 return true;
             case R.id.back:
