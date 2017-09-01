@@ -28,7 +28,7 @@ import Sql.SqlHelper;
 
 public class Profile extends AppCompatActivity {
 
-    private SqlHelper sqlHelper;
+    private SqlHelper sqlHelper = new SqlHelper(this);
     ArrayList<ContactsData> contactsDataArrayList;
     CustomAdapter adapter;
     /**
@@ -43,7 +43,7 @@ public class Profile extends AppCompatActivity {
 
         JSONArray contactList = null;
         try {
-            contactList = sqlHelper.getData();
+           contactList = sqlHelper.getData();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -71,15 +71,6 @@ public class Profile extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.simpleListView);
         listView.setAdapter(adapter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(getApplication(), Contacts.class);
-                startActivity(intent);
-            }
-        });
 
     }
 
