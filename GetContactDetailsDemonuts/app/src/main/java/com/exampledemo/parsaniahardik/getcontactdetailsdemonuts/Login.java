@@ -61,7 +61,7 @@ public class Login extends AppCompatActivity {
            String.valueOf(_passwordText.getText()).equals("israel123"))
         {
             Log.d(TAG, "Login");
-            Intent intent = new Intent(getApplicationContext(), Contacts.class);
+            Intent intent = new Intent(getApplicationContext(), Profile.class);
             startActivity(intent);
         }else if (!validate())
         {
@@ -108,7 +108,7 @@ public class Login extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // disable going back to the Contacts
+        // disable going back to the ContactsPhone
         moveTaskToBack(true);
     }
 

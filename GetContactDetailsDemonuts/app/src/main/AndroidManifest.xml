@@ -19,7 +19,8 @@
         android:label="PerfectShipping"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login"
+        <activity
+            android:name=".Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,29 +41,32 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-
         <activity
             android:name=".QR"
             android:label="@string/title_activity_qr"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Contacts"
+            android:exported="true"
             android:label="PerfectShipping"
-            android:theme="@style/AppTheme"
-            android:exported="true"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".MapsActivity"
             android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
             android:exported="true"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme"
+            android:icon="@mipmap/ic_launcher"
             android:label="Location"
-             />
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Signup"
             android:label="PerfectShipping"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Profile"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

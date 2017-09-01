@@ -2,22 +2,21 @@ package Contact;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
-import android.text.Editable;
 import android.util.Log;
-import android.widget.TextView;
+import android.widget.EditText;
+
+import Sql.SqlHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,7 +24,19 @@ import java.util.regex.Pattern;
  * Created by juanmacedo on 15/8/17.
  */
 
-public class Contacts {
+public class ContactsPhone {
+
+    public static void sqlContact(SqlHelper sqlHelper, EditText aname, EditText aphone, EditText amail, EditText astate,
+                           EditText acity, EditText astreet, EditText acode){
+        if(sqlHelper.find_contact(String.valueOf(aphone.getText())) == 1) {
+            sqlHelper.update_contact(String.valueOf(aname.getText()), String.valueOf(aphone.getText()), String.valueOf(amail.getText())
+                    , String.valueOf(astate.getText()), String.valueOf(acity.getText()), String.valueOf(astreet.getText()), String.valueOf(acode.getText()));
+
+        } else{
+            sqlHelper.create_contact(String.valueOf(aname.getText()), String.valueOf(aphone.getText()), String.valueOf(amail.getText())
+                    , String.valueOf(astate.getText()), String.valueOf(acity.getText()), String.valueOf(astreet.getText()), String.valueOf(acode.getText()));
+        }
+    }
 
 
 

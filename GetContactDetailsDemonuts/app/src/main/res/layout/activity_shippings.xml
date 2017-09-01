@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/lname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Name: "
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:layout_alignBaseline="@+id/name"
+        android:layout_alignBottom="@+id/name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="tname"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="39dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/lphone"
+        android:layout_toEndOf="@+id/lphone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lphone"
+        android:layout_gravity="left"
+        android:text="Phone: "
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/lname"
+        android:layout_alignLeft="@+id/lname"
+        android:layout_alignStart="@+id/lname" />
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="lphone"
+        android:layout_alignBaseline="@+id/lphone"
+        android:layout_alignBottom="@+id/lphone"
+        android:layout_alignRight="@+id/name"
+        android:layout_alignEnd="@+id/name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lemail"
+        android:text="Email: "
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/lphone"
+        android:layout_alignLeft="@+id/lphone"
+        android:layout_alignStart="@+id/lphone" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tmail"
+        android:layout_alignBaseline="@+id/lemail"
+        android:layout_alignBottom="@+id/lemail"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lstate"
+        android:text="State: "
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/lemail"
+        android:layout_alignRight="@+id/lemail"
+        android:layout_alignEnd="@+id/lemail" />
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tstate"
+        android:layout_alignBaseline="@+id/lstate"
+        android:layout_alignBottom="@+id/lstate"
+        android:layout_alignLeft="@+id/phone"
+        android:layout_alignStart="@+id/phone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lcity"
+        android:text="City: "
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/lstate"
+        android:layout_alignLeft="@+id/lstate"
+        android:layout_alignStart="@+id/lstate" />
+
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tcity"
+        android:layout_alignBaseline="@+id/lcity"
+        android:layout_alignBottom="@+id/lcity"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lStreet"
+        android:text="Street: "
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/lcity"
+        android:layout_alignLeft="@+id/lstate"
+        android:layout_alignStart="@+id/lstate" />
+
+    <TextView
+        android:id="@+id/Street"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tstreet"
+        android:layout_alignBaseline="@+id/lStreet"
+        android:layout_alignBottom="@+id/lStreet"
+        android:layout_alignLeft="@+id/state"
+        android:layout_alignStart="@+id/state" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lcode"
+        android:text="Code: "
+        android:layout_below="@+id/lStreet"
+        android:layout_alignLeft="@+id/lStreet"
+        android:layout_alignStart="@+id/lStreet"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tcode"
+        android:layout_alignBaseline="@+id/lcode"
+        android:layout_alignBottom="@+id/lcode"
+        android:layout_alignLeft="@+id/Street"
+        android:layout_alignStart="@+id/Street" />
+
+
+</RelativeLayout>

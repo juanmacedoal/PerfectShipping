@@ -9,4 +9,7 @@
     <string name="arriba">^</string>
     <string name="abajo">v</string>
     <string name="title_activity_qr">QR</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

@@ -37,6 +37,9 @@ import org.json.JSONObject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Contact.ContactsPhone;
+import Sql.SqlHelper;
+
 
 public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -77,10 +80,13 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
 
         sqlHelper = new SqlHelper(this);
 
+        try {
+            sqlHelper.getData();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         btnMap = (FloatingActionButton) findViewById(R.id.map);
-
-
         aname = (AutoCompleteTextView) findViewById(R.id.at_name);
         aphone = (EditText) findViewById(R.id.at_phone);
         amail = (EditText) findViewById(R.id.at_mail);
@@ -101,10 +107,10 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
         aname.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.e("ahjosjha", String.valueOf(aname.getText()));
+                Log.e("Nombre: ", String.valueOf(aname.getText()));
                 JSONObject contactlist = null;
                 try {
-                    contactlist = Contact.Contacts.id_return(getContentResolver(), String.valueOf(aname.getText()));
+                    contactlist = ContactsPhone.id_return(getContentResolver(), String.valueOf(aname.getText()));
                     aname.setText(contactlist.getString("name"));
                     aphone.setText(contactlist.getString("phone"));
                     amail.setText(contactlist.getString("email"));
@@ -139,18 +145,23 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     // Perform action on key press
-                    boolean success = Contact.Contacts.insertContact(getContentResolver(), String.valueOf(aname.getText())
-                            , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
-                    if(sqlHelper.find_contact(Integer.parseInt(String.valueOf(aphone.getText())))) {
-                        sqlHelper.update_contact();
 
-                    } else{
-                        sqlHelper.create_contact(String.valueOf(aname.getText()), Integer.parseInt(String.valueOf(aphone.getText())), String.valueOf(amail.getText())
-                                , String.valueOf(astate.getText()), String.valueOf(acity.getText()), String.valueOf(adoor.getText()), String.valueOf(acode.getText()));
+
+                    //SAVE THE CONTACT IN THE DB
+                    if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
+                            && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
+                            && !String.valueOf(acode.getText()).equals("")){
+                        ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+
+                    boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
+                            , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
+
+                        if (success)
+                            Toast.makeText(getApplicationContext(), "Contact modify!",
+                                    Toast.LENGTH_LONG).show();
                     }
-                    if (success)
-                        Toast.makeText(getApplicationContext(), "Contact modify!",
-                                Toast.LENGTH_LONG).show();
+
+
                     return true;
                 }
                 return false;
@@ -164,11 +175,20 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
                     // Perform action on key press
-                    boolean success = Contact.Contacts.insertContact(getContentResolver(), String.valueOf(aname.getText())
-                            , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
-                    if (success)
-                        Toast.makeText(getApplicationContext(), "Contact modify!",
-                                Toast.LENGTH_LONG).show();
+
+                    //SAVE THE CONTACT IN THE DB
+                    if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
+                            && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
+                            && !String.valueOf(acode.getText()).equals("")){
+                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+
+                        boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
+                                , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
+
+                        if (success)
+                            Toast.makeText(getApplicationContext(), "Contact modify!",
+                                    Toast.LENGTH_LONG).show();
+                    }
                     return true;
                 }
                 return false;
@@ -182,11 +202,20 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     // Perform action on key press
-                    boolean success = Contact.Contacts.insertContact(getContentResolver(), String.valueOf(aname.getText())
+
+                    //SAVE THE CONTACT IN THE DB
+                    if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
+                            && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
+                            && !String.valueOf(acode.getText()).equals("")){
+                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+
+                    boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
                             , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
+
                     if (success)
                         Toast.makeText(getApplicationContext(), "Contact modify!",
                                 Toast.LENGTH_LONG).show();
+                }
                     return true;
                 }
                 return false;
@@ -198,12 +227,21 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                 // If the event is a key-down event on the "enter" button
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    // Perform action on key press
-                    boolean success = Contact.Contacts.insertContact(getContentResolver(), String.valueOf(aname.getText())
+
+
+                    //SAVE THE CONTACT IN THE DB
+                    if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
+                            && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
+                            && !String.valueOf(acode.getText()).equals("")){
+                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+
+                    boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
                             , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
+
                     if (success)
                         Toast.makeText(getApplicationContext(), "Contact modify!",
                                 Toast.LENGTH_LONG).show();
+                }
                     return true;
                 }
                 return false;
@@ -217,6 +255,13 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     // Perform action on key press
                     boolean success = true;
+
+                    //SAVE THE CONTACT IN THE DB
+                    if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
+                            && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
+                            && !String.valueOf(acode.getText()).equals(""))
+                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+
                     if (success)
                         Toast.makeText(getApplicationContext(), "Contact modify!",
                                 Toast.LENGTH_LONG).show();
@@ -234,6 +279,13 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     // Perform action on key press
                     boolean success = true;
+
+                    //SAVE THE CONTACT IN THE DB
+                    if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
+                            && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
+                            && !String.valueOf(acode.getText()).equals(""))
+                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+
                     if (success)
                         Toast.makeText(getApplicationContext(), "Contact modify!",
                                 Toast.LENGTH_LONG).show();
@@ -250,6 +302,13 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     // Perform action on key press
                     boolean success = true;
+
+                    //SAVE THE CONTACT IN THE DB
+                    if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
+                            && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
+                            && !String.valueOf(acode.getText()).equals(""))
+                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+
                     if (success)
                         Toast.makeText(getApplicationContext(), "Contact modify!",
                                 Toast.LENGTH_LONG).show();
@@ -285,7 +344,7 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
         protected Void doInBackground(Void... params) {
 
             try {
-                contactList = Contact.Contacts.getContacts(getContentResolver());
+                contactList = ContactsPhone.getContacts(getContentResolver());
                 names = new String[contactList.length()];
                 JSONObject jsonObject = new JSONObject();
                 for (int i = 0; i < contactList.length(); i++) {
@@ -310,7 +369,7 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
 
                 // then set total contacts to subtitle
                 getSupportActionBar().setSubtitle(
-                        names.length + " Contacts");
+                        names.length + " ContactsPhone");
                 ArrayAdapter<String> adapter = null;
                 if (adapter == null) {
                     Log.e("NAMES", names.toString());
@@ -421,6 +480,11 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
 
         switch (menu.getItemId()) {
             case R.id.accept:
+                if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
+                        && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
+                        && !String.valueOf(acode.getText()).equals(""))
+                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+
                 if (String.valueOf(aname.getText()).equals("")) {
                     aname.setError("Name can't be empty!");
 
