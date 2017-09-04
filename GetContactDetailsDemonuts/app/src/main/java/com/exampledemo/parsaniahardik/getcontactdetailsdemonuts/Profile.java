@@ -16,6 +16,7 @@ import android.view.View;
 
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -40,6 +41,7 @@ public class Profile extends AppCompatActivity {
     ArrayList<ContactsData> contactsDataArrayList;
     CustomAdapter adapter;
     FloatingActionButton add;
+    TextView center;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -50,9 +52,14 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        center = (TextView) findViewById(R.id.center_text);
+
         JSONArray contactList = null;
         try {
            contactList = sqlHelper.getData();
+            if(contactList.toString().equals(""))
+                center.setVisibility(0);
+
             contactsDataArrayList = new ArrayList<>();
 
             JSONObject jsonObject = new JSONObject();
