@@ -65,8 +65,8 @@
         <activity
             android:name=".Profile"
             android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:exported="true"></activity>
+            android:theme="@style/AppTheme"
+            android:exported="true"/>
     </application>
 
 </manifest>

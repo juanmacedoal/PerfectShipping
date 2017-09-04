@@ -28,13 +28,23 @@ public class ContactsPhone {
 
     public static void sqlContact(SqlHelper sqlHelper, EditText aname, EditText aphone, EditText amail, EditText astate,
                            EditText acity, EditText astreet, EditText acode){
-        if(sqlHelper.find_contact(String.valueOf(aphone.getText())) == 1) {
+        if(sqlHelper.find_contact(String.valueOf(aphone.getText())).equals("exist")) {
             sqlHelper.update_contact(String.valueOf(aname.getText()), String.valueOf(aphone.getText()), String.valueOf(amail.getText())
                     , String.valueOf(astate.getText()), String.valueOf(acity.getText()), String.valueOf(astreet.getText()), String.valueOf(acode.getText()));
 
         } else{
             sqlHelper.create_contact(String.valueOf(aname.getText()), String.valueOf(aphone.getText()), String.valueOf(amail.getText())
                     , String.valueOf(astate.getText()), String.valueOf(acity.getText()), String.valueOf(astreet.getText()), String.valueOf(acode.getText()));
+        }
+    }
+
+    public static void sqlContact(SqlHelper sqlHelper, String aname, String aphone, String amail, String astate,
+                                  String acity, String astreet, String acode){
+        if(sqlHelper.find_contact(aphone).equals("exist")) {
+            sqlHelper.update_contact(aname, aphone, amail, astate, acity, astreet, acode);
+
+        } else{
+            sqlHelper.create_contact(aname, aphone, amail, astate, acity, astreet, acode);
         }
     }
 

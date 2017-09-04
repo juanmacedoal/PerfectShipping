@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -19,6 +20,9 @@ import com.google.zxing.common.BitMatrix;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import Contact.ContactsPhone;
+import Sql.SqlHelper;
 
 import static com.exampledemo.parsaniahardik.getcontactdetailsdemonuts.R.id.imageView;
 
@@ -30,6 +34,7 @@ public class QR extends AppCompatActivity {
     Bitmap bitmap;
     String street, city, state, postalcode, email, name, phone;
     TextView tstreet, tcity, tstate, tpostalcode;
+    SqlHelper sqlHelper;
 
 
 
@@ -37,6 +42,8 @@ public class QR extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr);
+
+        sqlHelper = new SqlHelper(this);
 
 
 
@@ -136,6 +143,13 @@ public class QR extends AppCompatActivity {
 
         switch (menu.getItemId()) {
             case R.id.accept:
+
+                ContactsPhone.sqlContact(sqlHelper, name, phone, email, state, city, street, postalcode);
+                Toast.makeText(getApplicationContext(), "Saved shipping!",
+                        Toast.LENGTH_LONG).show();
+                intent = new Intent(getApplication(), Profile.class);
+                intent.putExtra("saved", "Saved shipping");
+                startActivity(intent);
 
 
                 return true;

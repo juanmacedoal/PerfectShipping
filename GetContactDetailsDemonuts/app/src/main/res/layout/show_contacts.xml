@@ -257,6 +257,7 @@
         android:layout_toLeftOf="@+id/fab"
         android:layout_toStartOf="@+id/fab"
         android:visibility="invisible"
+        app:backgroundTint="@android:color/holo_blue_bright"
         app:srcCompat="@android:drawable/ic_menu_mapmode" />
 
 

@@ -137,10 +137,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         }, 3000);
 
                 return true;
-            case R.id.back:
-                finish();
-                return true;
-
             default:
                 return super.onOptionsItemSelected(menu);
         }

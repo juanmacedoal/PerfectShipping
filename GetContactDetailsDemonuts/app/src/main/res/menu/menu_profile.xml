@@ -8,6 +8,7 @@
         android:orderInCategory="3"
         android:showAsAction="always"
         android:title="Configuration"
+        android:icon="@drawable/ic_build_black_24dp"
         app:showAsAction="always" />
 
     <item
@@ -15,6 +16,7 @@
         android:orderInCategory="3"
         android:showAsAction="always"
         android:title="Log out"
+        android:icon="@drawable/ic_power_settings_new_black_24dp"
         app:showAsAction="always" />
 
 </menu>

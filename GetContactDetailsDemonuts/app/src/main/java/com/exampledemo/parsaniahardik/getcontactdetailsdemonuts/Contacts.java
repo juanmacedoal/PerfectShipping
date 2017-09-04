@@ -1,6 +1,8 @@
 package com.exampledemo.parsaniahardik.getcontactdetailsdemonuts;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -16,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -41,11 +44,12 @@ import Contact.ContactsPhone;
 import Sql.SqlHelper;
 
 
-public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
+public class Contacts extends AppCompatActivity {
 
     private FloatingActionButton btnContacts, btnMap, btnQR;
     private ListView mListView;
     private GoogleMap mMap;
+    Menu Mymenu;
 
     private String[] ids;
 
@@ -72,13 +76,19 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
     private TextView tvname, tvphone, tvmail, tvpostal, t2, t3, t4, t5, t6, t7, t8;
     private ArrayAdapter<String> adapter;
     private SqlHelper sqlHelper;
+    private MenuItem accept;
+    int set = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.show_contacts);
 
         sqlHelper = new SqlHelper(this);
+
+        set = 0;
 
         try {
             sqlHelper.getData();
@@ -103,6 +113,7 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
         t8 = (TextView) findViewById(R.id.t8);
 
         new Contac().execute();
+
 
         aname.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -134,6 +145,9 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                 t8.setVisibility(1);
                 btnMap.setVisibility(1);
 
+                Mymenu.findItem(R.id.accept).setVisible(true);
+
+
             }
         });
 
@@ -151,7 +165,7 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
                             && !String.valueOf(acode.getText()).equals("")){
-                        ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                        //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
                     boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
                             , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
@@ -180,7 +194,7 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
                             && !String.valueOf(acode.getText()).equals("")){
-                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                    //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
                         boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
                                 , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
@@ -207,7 +221,7 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
                             && !String.valueOf(acode.getText()).equals("")){
-                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                    //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
                     boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
                             , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
@@ -233,7 +247,7 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
                             && !String.valueOf(acode.getText()).equals("")){
-                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                    //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
                     boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
                             , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
@@ -260,7 +274,7 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
                             && !String.valueOf(acode.getText()).equals(""))
-                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                    //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
                     if (success)
                         Toast.makeText(getApplicationContext(), "Contact modify!",
@@ -284,7 +298,7 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
                             && !String.valueOf(acode.getText()).equals(""))
-                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                    //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
                     if (success)
                         Toast.makeText(getApplicationContext(), "Contact modify!",
@@ -307,7 +321,7 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
                             && !String.valueOf(acode.getText()).equals(""))
-                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                    //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
                     if (success)
                         Toast.makeText(getApplicationContext(), "Contact modify!",
@@ -339,7 +353,21 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
     }
 
 
+
+    /**
+     *
+     */
     public class Contac extends AsyncTask<Void, Void, Void> {
+
+        private ProgressDialog dialog = new ProgressDialog(Contacts.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            setProgressBarIndeterminateVisibility(true);
+            dialog = ProgressDialog.show(Contacts.this, "Loading", "", false);
+
+        }
 
         protected Void doInBackground(Void... params) {
 
@@ -363,6 +391,10 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+            setProgressBarIndeterminateVisibility(true);
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
 
             // If array list is not null and is contains value
             if (names != null && names.length > 0) {
@@ -395,6 +427,22 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
 
 
         }
+    }
+
+
+
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        MenuItem accept = menu.findItem(R.id.accept);
+        if(set == 0)
+        {
+            accept.setVisible(false);
+        }
+        else if(set == 1)
+        {
+            accept.setVisible(true);
+        }
+        return true;
     }
 
 
@@ -471,6 +519,8 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+        menu.getItem(1).setVisible(false);
+        Mymenu = menu;
         return true;
     }
 
@@ -483,7 +533,6 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                 if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                         && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
                         && !String.valueOf(acode.getText()).equals(""))
-                    ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
                 if (String.valueOf(aname.getText()).equals("")) {
                     aname.setError("Name can't be empty!");
@@ -521,24 +570,6 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
                 }
 
                 return true;
-            case R.id.refresh:
-                aname.setText("");
-                aphone.setVisibility(0);
-                amail.setVisibility(0);
-                apostal.setVisibility(0);
-                astate.setVisibility(0);
-                acity.setVisibility(0);
-                acode.setVisibility(0);
-
-                t2.setVisibility(0);
-                t3.setVisibility(0);
-                t4.setVisibility(0);
-                t6.setVisibility(0);
-                t7.setVisibility(0);
-                t8.setVisibility(0);
-                btnMap.setVisibility(0);
-
-                return true;
             case R.id.contacts:
                 intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
                 startActivityForResult(intent, 1);
@@ -557,12 +588,14 @@ public class Contacts extends AppCompatActivity implements OnMapReadyCallback {
         return matcher.matches();
     }
 
-
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = new Intent(getApplication(), Profile.class);
     }
+
+
+
+
 }

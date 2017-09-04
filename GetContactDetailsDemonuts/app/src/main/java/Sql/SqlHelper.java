@@ -71,19 +71,29 @@ public class SqlHelper extends SQLiteOpenHelper {
 
     }
 
-    public int find_contact(String phone){
+    public String find_contact(String phone){
         SQLiteDatabase db = this.getWritableDatabase();
 
         String select = "SELECT * FROM " + TABLE_NAME + " WHERE " + COL_3 + "='" + phone +"'";
+        String phon= "";
 
-        Log.d(TAG, "findContact: " +  phone);
+
 
         Cursor result = db.rawQuery(select, null);
+        if(result.moveToFirst()){
+            do{
+                phon = result.getString(result.getColumnIndex(COL_3));
 
-        if(result != null)
-            return 0;
+            }while (result.moveToNext());
+        }
+        result.close();
+
+        Log.d(TAG, "findContact: " +  phone + phon);
+
+        if(phon == phone)
+            return "exist";
         else
-            return 1;
+            return "new";
 
     }
 
@@ -91,35 +101,24 @@ public class SqlHelper extends SQLiteOpenHelper {
                                   String street, String code){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-
-        String update = "UPDATE " + TABLE_NAME + " SET " + COL_2 + "='" + name + "' AND "
-                + COL_3 + "=" + phone + " AND " + COL_4 + "='" + email + "' AND "
-                + COL_5 + "='" + state + "' AND " + COL_6 + "='" + city + "' AND "
-                + COL_7 + "='" + street + "' AND " + COL_8 + "='" + code +  "' WHERE "
-                + COL_3 + "='" + phone +"'";
-
+        contentValues.put(COL_2, name);
+        contentValues.put(COL_3, email);
+        contentValues.put(COL_4, state);
+        contentValues.put(COL_5, city);
+        contentValues.put(COL_6, street);
+        contentValues.put(COL_7, code);
 
         Log.d(TAG, "updateContact: " +  phone);
 
-        db.execSQL(update);
+        db.update(TABLE_NAME, contentValues, COL_3 + "= ?", new String[]{phone});
 
     }
 
-    public void delete_contact(String phone){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
 
-        String update = "DELETE FROM " + TABLE_NAME + " WHERE " + COL_3 + "='" + phone +"'";
-
-
-        Log.d(TAG, "deleteContact: " +  phone);
-
-        db.execSQL(update);
-
-    }
 
     public JSONArray getData() throws JSONException {
 
+        int i = 0;
         JSONArray contacts = new JSONArray();
         SQLiteDatabase db = this.getWritableDatabase();
         String[] columns = new String[]{COL_1, COL_2, COL_3, COL_4, COL_4, COL_5, COL_6, COL_7, COL_8};
@@ -145,11 +144,21 @@ public class SqlHelper extends SQLiteOpenHelper {
             contactList.put("city", c.getString(icity));
             contactList.put("street", c.getString(istreet));
             contactList.put("code", c.getString(icode));
-            contacts.put(Integer.parseInt(c.getString(iRow)), contactList);
+            contacts.put(i, contactList);
+            i++;
 
         }
 
         return contacts;
+    }
+
+
+    public void delete_contact(String phone, String name, String email){
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.delete(TABLE_NAME, COL_2 + "='" + name + "' AND " + COL_3 + "='" + phone + "' AND " + COL_4 + "='" + email + "'", null);
+        database.close();
+        Log.d("DELETE", "Delete contact by phone: " + phone);
+
     }
 
 
