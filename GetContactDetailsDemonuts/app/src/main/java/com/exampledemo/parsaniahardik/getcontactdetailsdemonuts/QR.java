@@ -153,10 +153,6 @@ public class QR extends AppCompatActivity {
 
 
                 return true;
-            case R.id.back:
-                finish();
-                startActivity(new Intent(getApplicationContext(), Contacts.class));
-                return true;
 
             default:
                 return super.onOptionsItemSelected(menu);

@@ -99,6 +99,7 @@ public class CustomAdapter extends ArrayAdapter<ContactsData> implements View.On
             viewHolder.txtState.setText(contactsData.getState());
             viewHolder.txtCity.setText(contactsData.getStreet());
             viewHolder.txtStreet.setText(contactsData.getCode());
+            viewHolder.txtState.setText(contactsData.getState());
 
             // Return the completed view to render on screen
             return convertView;
