@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -117,10 +118,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 startActivityForResult(intent, 1);
 
                 final ProgressDialog progressDialog = new ProgressDialog(this,
-                        R.style.AppTheme);
+                        R.style.AppTheme_Dark);
                 progressDialog.setIndeterminate(true);
                 progressDialog.setMessage("Creating QR...");
                 progressDialog.show();
+                progressDialog.getWindow().setGravity(Gravity.CENTER_HORIZONTAL);
 
 
 

@@ -22,6 +22,12 @@
         android:text="Contact QR"
         android:textSize="18sp" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_dark" />
+
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="80dp"
@@ -40,6 +46,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black" />
+
         <TextView
             android:id="@+id/names"
             android:layout_width="wrap_content"
@@ -48,6 +59,11 @@
             android:text="tname"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="18dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black" />
 
         <TextView
             android:id="@+id/phones"
@@ -71,6 +87,7 @@
             android:layout_height="wrap_content"
             android:fadeScrollbars="true"
             android:text="Street"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="12sp" />
 
         <TextView
@@ -78,6 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="City"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="12sp" />
 
 
@@ -86,6 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="State"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="12sp" />
 
         <TextView
@@ -93,6 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Postalcode"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="12sp" />
 
 

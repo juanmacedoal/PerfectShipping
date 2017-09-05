@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -145,10 +146,12 @@ public class Profile extends AppCompatActivity {
                 startActivityForResult(intent, 1);
 
                 final ProgressDialog progressDialog = new ProgressDialog(Profile.this,
-                        R.style.AppTheme);
+                        R.style.AppTheme_Dark);
                 progressDialog.setIndeterminate(true);
                 progressDialog.setMessage("Creating QR...");
                 progressDialog.show();
+                progressDialog.getWindow().setGravity(Gravity.CENTER_HORIZONTAL);
+
 
                 new android.os.Handler().postDelayed(
                         new Runnable() {

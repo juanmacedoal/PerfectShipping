@@ -27,6 +27,7 @@
             android:layout_height="1dp"
             android:background="@android:color/background_dark" />
 
+
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="80dp"
@@ -38,17 +39,17 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_shipping" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/background_dark" />
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black" />
 
         <TextView
             android:id="@+id/names"
@@ -62,7 +63,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/background_dark" />
+            android:background="@android:color/black" />
 
         <TextView
             android:id="@+id/phones"
@@ -115,6 +116,7 @@
             android:textSize="12sp" />
 
 
+
     </LinearLayout>
 
     <LinearLayout
@@ -122,6 +124,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -132,10 +138,6 @@
             android:contentDescription=""
             android:src="@drawable/code"
             tools:ignore="UnknownId" />
-
-
-
-
 
 
     </LinearLayout>
