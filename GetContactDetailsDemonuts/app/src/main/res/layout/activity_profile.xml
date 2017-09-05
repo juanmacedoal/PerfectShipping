@@ -37,7 +37,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="0 Shippings in Profile"
-        android:textColor="@color/black"/>
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
 
 </RelativeLayout>

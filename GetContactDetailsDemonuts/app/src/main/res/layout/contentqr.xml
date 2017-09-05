@@ -2,7 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="121dp">
+
 
     <TextView
         android:id="@+id/textView"
@@ -13,62 +20,83 @@
         android:layout_alignStart="@+id/Street"
         android:layout_marginTop="10dp"
         android:text="Contact QR"
-        android:textSize="30dp" />
+        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/Street"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/lcode"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_shipping" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Street"
-        android:textSize="20dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/City"
-        android:layout_alignStart="@+id/City"
-         />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/City"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="City"
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_below="@+id/Street"
-        android:layout_alignLeft="@+id/State"
-        android:layout_alignStart="@+id/State" />
+        <TextView
+            android:id="@+id/names"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="tname"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/phones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lphone"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/emails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tmail"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Street"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="true"
+            android:text="Street"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/City"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City"
+            android:textSize="12sp" />
 
 
-    <TextView
-        android:id="@+id/State"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="State"
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_below="@+id/City"
-        android:layout_alignLeft="@+id/Postalcode"
-        android:layout_alignStart="@+id/Postalcode" />
+        <TextView
+            android:id="@+id/State"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State"
+            android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/Postalcode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/State"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/imageView"
-        android:layout_toRightOf="@+id/imageView"
-        android:text="Postalcode"
-        android:textSize="20dp" />
+        <TextView
+            android:id="@+id/Postalcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Postalcode"
+            android:textSize="12sp" />
 
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
@@ -79,20 +107,22 @@
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="239dp"
+                android:layout_below="@+id/Postalcode"
+                android:layout_gravity="center"
+                android:contentDescription=""
+                android:src="@drawable/code"
+                tools:ignore="UnknownId" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dip"
                 android:background="#393b3e"
                 android:layout_alignParentTop="true"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:id="@+id/imageView"
-                android:layout_below="@+id/Postalcode"
-                tools:ignore="UnknownId"
-                android:src="@drawable/code"
-                android:contentDescription=""
-                android:layout_gravity="center"/>
 
         </LinearLayout>
 

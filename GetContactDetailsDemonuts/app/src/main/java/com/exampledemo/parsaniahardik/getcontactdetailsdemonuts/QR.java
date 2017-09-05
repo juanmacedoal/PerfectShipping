@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import Contact.ContactsPhone;
 import Sql.SqlHelper;
 
+import static com.exampledemo.parsaniahardik.getcontactdetailsdemonuts.R.id.accept;
 import static com.exampledemo.parsaniahardik.getcontactdetailsdemonuts.R.id.imageView;
 
 public class QR extends AppCompatActivity {
@@ -33,8 +34,9 @@ public class QR extends AppCompatActivity {
     public final static int QRcodeWidth = 500;
     Bitmap bitmap;
     String street, city, state, postalcode, email, name, phone;
-    TextView tstreet, tcity, tstate, tpostalcode;
+    TextView tstreet, tcity, tstate, tpostalcode, tname, tphone, temail;
     SqlHelper sqlHelper;
+    int set = 1;
 
 
 
@@ -45,11 +47,12 @@ public class QR extends AppCompatActivity {
 
         sqlHelper = new SqlHelper(this);
 
-
-
-
         Intent iin = getIntent();
         Bundle bundle = iin.getExtras();
+
+        if(bundle.getString("comefrom") != null)
+          if(bundle.getString("comefrom").equals("profile"))
+            set = 0;
 
         street = bundle.getString("street");
         city = bundle.getString("city");
@@ -58,6 +61,8 @@ public class QR extends AppCompatActivity {
         name = bundle.getString("name");
         phone = bundle.getString("phone");
         email = bundle.getString("email");
+
+
 
         final JSONObject contactList = new JSONObject();
         try {
@@ -77,11 +82,18 @@ public class QR extends AppCompatActivity {
         tcity = (TextView) findViewById(R.id.City);
         tstate = (TextView) findViewById(R.id.State);
         tpostalcode = (TextView) findViewById(R.id.Postalcode);
+        tname = (TextView) findViewById(R.id.names);
+        tphone = (TextView) findViewById(R.id.phones);
+        temail = (TextView) findViewById(R.id.emails);
 
+        tname.setText(name);
         tstreet.setText("Street: " + street);
         tcity.setText("City: " + city);
         tstate.setText("State: " + state);
         tpostalcode.setText("Postal code: " + postalcode);
+        tphone.setText("Phone: " + phone);
+        temail.setText("Email: " + email);
+
 
         qr = (ImageView) findViewById(imageView);
 
@@ -134,12 +146,30 @@ public class QR extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_map, menu);
+
+        return true;
+    }
+
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        MenuItem accept = menu.findItem(R.id.accept);
+        if(set == 0)
+        {
+            accept.setVisible(false);
+        }
+        else if(set == 1)
+        {
+            accept.setVisible(true);
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menu) {
         Intent intent;
+
+
+
 
         switch (menu.getItemId()) {
             case R.id.accept:

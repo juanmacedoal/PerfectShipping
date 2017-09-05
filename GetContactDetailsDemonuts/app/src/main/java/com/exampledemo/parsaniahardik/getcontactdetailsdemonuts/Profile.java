@@ -1,5 +1,6 @@
 package com.exampledemo.parsaniahardik.getcontactdetailsdemonuts;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -57,8 +59,7 @@ public class Profile extends AppCompatActivity {
         JSONArray contactList = null;
         try {
            contactList = sqlHelper.getData();
-            if(contactList.toString().equals(""))
-                center.setVisibility(0);
+
 
             contactsDataArrayList = new ArrayList<>();
 
@@ -68,7 +69,7 @@ public class Profile extends AppCompatActivity {
                     jsonObject = contactList.getJSONObject(i);
                     contactsDataArrayList.add(new ContactsData(jsonObject.getString("name"), jsonObject.getString("phone"), jsonObject.getString("email"),
                             jsonObject.getString("state"), jsonObject.getString("city"), jsonObject.getString("street"), jsonObject.getString("code")));
-                    Log.e("NAMES", contactsDataArrayList.toString());
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -80,6 +81,10 @@ public class Profile extends AppCompatActivity {
         }
 
 
+        if(contactsDataArrayList != null) {
+            center.setVisibility(0);
+            Log.e("TEXTVIEW", "centro");
+        }
 
         adapter= new CustomAdapter(contactsDataArrayList,getApplicationContext());
 
@@ -87,6 +92,7 @@ public class Profile extends AppCompatActivity {
 
         final SwipeMenuListView listView = (SwipeMenuListView) findViewById(R.id.simpleListView);
         listView.setAdapter(adapter);
+
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
             @Override
@@ -108,17 +114,66 @@ public class Profile extends AppCompatActivity {
         };
 
         listView.setMenuCreator(creator);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView tname = (TextView)view.findViewById(R.id.name);
+                TextView tphone = (TextView)view.findViewById(R.id.phone);
+                TextView temail = (TextView)view.findViewById(R.id.email);
+                TextView tstate = (TextView)view.findViewById(R.id.state);
+                TextView tcity = (TextView)view.findViewById(R.id.city);
+                TextView tstreet = (TextView)view.findViewById(R.id.Street);
+                TextView tcode = (TextView)view.findViewById(R.id.code);
 
+                String name = tname.getText().toString();
+                String phone= tphone.getText().toString();
+                String email = temail.getText().toString();
+                String state = tstate.getText().toString();
+                String city = tcity.getText().toString();
+                String street = tstreet.getText().toString();
+                String code = tcode.getText().toString();
+
+                Intent intent = new Intent(getApplication(), QR.class);
+                intent.putExtra("street", street);
+                intent.putExtra("city", city);
+                intent.putExtra("state", state);
+                intent.putExtra("code", code);
+                intent.putExtra("name", name);
+                intent.putExtra("phone", phone);
+                intent.putExtra("email", email);
+                intent.putExtra("comefrom", "profile");
+                startActivityForResult(intent, 1);
+
+                final ProgressDialog progressDialog = new ProgressDialog(Profile.this,
+                        R.style.AppTheme);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Creating QR...");
+                progressDialog.show();
+
+                new android.os.Handler().postDelayed(
+                        new Runnable() {
+                            public void run() {
+                                // On complete call either onLoginSuccess or onLoginFailed
+                                finish();
+                                // onLoginFailed();
+                                progressDialog.dismiss();
+                            }
+                        }, 3000);
+
+
+            }
+        });
         listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch(index){
                     case 0:
-                        contactsDataArrayList.remove(position);
-                        adapter.notifyDataSetChanged();
-                        Log.d("ITEM", contactsDataArrayList.get(position).getPhone());
                         sqlHelper.delete_contact(contactsDataArrayList.get(position).getPhone(),
                                 contactsDataArrayList.get(position).getName(), contactsDataArrayList.get(position).getEmail());
+                        contactsDataArrayList.remove(position);
+                        adapter.notifyDataSetChanged();
+//                        Log.d("ITEM", contactsDataArrayList.get(position).getPhone());
+
                     break;
 
                 }

@@ -80,7 +80,7 @@ public class CustomAdapter extends ArrayAdapter<ContactsData> implements View.On
                 viewHolder.txtState = (TextView) convertView.findViewById(R.id.state);
                 viewHolder.txtCity = (TextView) convertView.findViewById(R.id.city);
                 viewHolder.txtStreet = (TextView) convertView.findViewById(R.id.Street);
-                viewHolder.txtState = (TextView) convertView.findViewById(R.id.code);
+                viewHolder.txtCode = (TextView) convertView.findViewById(R.id.code);
 
 
                 result=convertView;
@@ -97,9 +97,10 @@ public class CustomAdapter extends ArrayAdapter<ContactsData> implements View.On
             viewHolder.txtPhone.setText(contactsData.getPhone());
             viewHolder.txtEmail.setText(contactsData.getEmail());
             viewHolder.txtState.setText(contactsData.getState());
-            viewHolder.txtCity.setText(contactsData.getStreet());
-            viewHolder.txtStreet.setText(contactsData.getCode());
+            viewHolder.txtCity.setText(contactsData.getCity());
+            viewHolder.txtStreet.setText(contactsData.getStreet());
             viewHolder.txtState.setText(contactsData.getState());
+            viewHolder.txtCode.setText(contactsData.getCode());
 
             // Return the completed view to render on screen
             return convertView;
