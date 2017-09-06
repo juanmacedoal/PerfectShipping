@@ -6,6 +6,70 @@
     xmlns:fab="http://schemas.android.com/tools"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="121dp"
+        android:weightSum="1"
+        android:id="@+id/up"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_alignLeft="@+id/Street"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/Street"
+            android:layout_marginTop="10dp"
+            android:text="Shippings"
+            android:layout_centerInParent="true"
+            android:textColor="@color/accent"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_dark" />
+
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="121dp"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/lcode"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.90"
+            android:src="@drawable/logo" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_dark" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:id="@+id/down"
+        android:layout_below="@+id/up"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_dark" />
+
+
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/simpleListView"
         android:layout_width="fill_parent"
@@ -30,14 +94,17 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="12dp" />
 
-    <TextView
-        android:id="@+id/center_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="0 Shippings in Profile"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+        <TextView
+            android:id="@+id/center_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="0 Shippings in Profile."
+            android:textSize="18sp"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

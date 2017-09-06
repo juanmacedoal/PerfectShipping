@@ -2,7 +2,6 @@ package com.exampledemo.parsaniahardik.getcontactdetailsdemonuts;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -27,11 +26,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -164,11 +159,11 @@ public class Contacts extends AppCompatActivity {
                     //SAVE THE CONTACT IN THE DB
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
-                            && !String.valueOf(acode.getText()).equals("")){
+                            && !String.valueOf(acode.getText()).equals("")) {
                         //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
-                    boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
-                            , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
+                        boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
+                                , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
 
                         if (success)
                             Toast.makeText(getApplicationContext(), "Contact modify!",
@@ -193,8 +188,8 @@ public class Contacts extends AppCompatActivity {
                     //SAVE THE CONTACT IN THE DB
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
-                            && !String.valueOf(acode.getText()).equals("")){
-                    //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                            && !String.valueOf(acode.getText()).equals("")) {
+                        //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
                         boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
                                 , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
@@ -220,16 +215,16 @@ public class Contacts extends AppCompatActivity {
                     //SAVE THE CONTACT IN THE DB
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
-                            && !String.valueOf(acode.getText()).equals("")){
-                    //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                            && !String.valueOf(acode.getText()).equals("")) {
+                        //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
-                    boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
-                            , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
+                        boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
+                                , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
 
-                    if (success)
-                        Toast.makeText(getApplicationContext(), "Contact modify!",
-                                Toast.LENGTH_LONG).show();
-                }
+                        if (success)
+                            Toast.makeText(getApplicationContext(), "Contact modify!",
+                                    Toast.LENGTH_LONG).show();
+                    }
                     return true;
                 }
                 return false;
@@ -246,16 +241,16 @@ public class Contacts extends AppCompatActivity {
                     //SAVE THE CONTACT IN THE DB
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
-                            && !String.valueOf(acode.getText()).equals("")){
-                    //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                            && !String.valueOf(acode.getText()).equals("")) {
+                        //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
-                    boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
-                            , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
+                        boolean success = ContactsPhone.insertContact(getContentResolver(), String.valueOf(aname.getText())
+                                , String.valueOf(aphone.getText()), String.valueOf(amail.getText()), String.valueOf(apostal.getText()));
 
-                    if (success)
-                        Toast.makeText(getApplicationContext(), "Contact modify!",
-                                Toast.LENGTH_LONG).show();
-                }
+                        if (success)
+                            Toast.makeText(getApplicationContext(), "Contact modify!",
+                                    Toast.LENGTH_LONG).show();
+                    }
                     return true;
                 }
                 return false;
@@ -274,11 +269,11 @@ public class Contacts extends AppCompatActivity {
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
                             && !String.valueOf(acode.getText()).equals(""))
-                    //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                        //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
-                    if (success)
-                        Toast.makeText(getApplicationContext(), "Contact modify!",
-                                Toast.LENGTH_LONG).show();
+                        if (success)
+                            Toast.makeText(getApplicationContext(), "Contact modify!",
+                                    Toast.LENGTH_LONG).show();
                     return true;
                 }
                 return false;
@@ -298,11 +293,11 @@ public class Contacts extends AppCompatActivity {
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
                             && !String.valueOf(acode.getText()).equals(""))
-                    //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                        //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
-                    if (success)
-                        Toast.makeText(getApplicationContext(), "Contact modify!",
-                                Toast.LENGTH_LONG).show();
+                        if (success)
+                            Toast.makeText(getApplicationContext(), "Contact modify!",
+                                    Toast.LENGTH_LONG).show();
                     return true;
                 }
                 return false;
@@ -321,11 +316,11 @@ public class Contacts extends AppCompatActivity {
                     if (!String.valueOf(aname.getText()).equals("") && !String.valueOf(amail.getText()).equals("") && !String.valueOf(aphone.getText()).equals("")
                             && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
                             && !String.valueOf(acode.getText()).equals(""))
-                    //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
+                        //ContactsPhone.sqlContact(sqlHelper, aname, aphone, amail, astate, acity, apostal, acode);
 
-                    if (success)
-                        Toast.makeText(getApplicationContext(), "Contact modify!",
-                                Toast.LENGTH_LONG).show();
+                        if (success)
+                            Toast.makeText(getApplicationContext(), "Contact modify!",
+                                    Toast.LENGTH_LONG).show();
                     return true;
                 }
                 return false;
@@ -351,7 +346,6 @@ public class Contacts extends AppCompatActivity {
 
 
     }
-
 
 
     /**
@@ -430,16 +424,11 @@ public class Contacts extends AppCompatActivity {
     }
 
 
-
-    public boolean onPrepareOptionsMenu(Menu menu)
-    {
+    public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem accept = menu.findItem(R.id.accept);
-        if(set == 0)
-        {
+        if (set == 0) {
             accept.setVisible(false);
-        }
-        else if(set == 1)
-        {
+        } else if (set == 1) {
             accept.setVisible(true);
         }
         return true;
@@ -534,23 +523,33 @@ public class Contacts extends AppCompatActivity {
                         && !String.valueOf(apostal.getText()).equals("") && !String.valueOf(acity.getText()).equals("") && !String.valueOf(astate.getText()).equals("")
                         && !String.valueOf(acode.getText()).equals(""))
 
+
                 if (String.valueOf(aname.getText()).equals("")) {
+
                     aname.setError("Name can't be empty!");
 
                 } else if (String.valueOf(amail.getText()).equals("")) {
+
                     amail.setError("Email can't be empty!");
 
-                }
-                if (String.valueOf(aphone.getText()).equals("")) {
+                } else if (!amail.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
+
+                    amail.setError("Invalid Email Address");
+
+                } else if (String.valueOf(aphone.getText()).equals("")) {
+
                     aphone.setError("Phone can't be empty!");
 
                 } else if (String.valueOf(apostal.getText()).equals("")) {
+
                     apostal.setError("Street can't be empty!");
 
                 } else if (String.valueOf(acity.getText()).equals("")) {
+
                     acity.setError("City can't be empty!");
 
                 } else if (String.valueOf(astate.getText()).equals("")) {
+
                     astate.setError("State can't be empty!");
 
                 } else if (String.valueOf(acode.getText()).equals("")) {
@@ -594,8 +593,6 @@ public class Contacts extends AppCompatActivity {
 
         Intent intent = new Intent(getApplication(), Profile.class);
     }
-
-
 
 
 }

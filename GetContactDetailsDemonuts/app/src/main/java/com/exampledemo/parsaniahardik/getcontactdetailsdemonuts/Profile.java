@@ -82,9 +82,9 @@ public class Profile extends AppCompatActivity {
         }
 
 
-        if(contactsDataArrayList != null) {
-            center.setVisibility(0);
-            Log.e("TEXTVIEW", "centro");
+        if(contactsDataArrayList.size() == 0) {
+            center.setVisibility(1);
+            Log.e("TEXTVIEW", "centro" + contactsDataArrayList.toString());
         }
 
         adapter= new CustomAdapter(contactsDataArrayList,getApplicationContext());
@@ -192,10 +192,6 @@ public class Profile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
     }
 
     @Override

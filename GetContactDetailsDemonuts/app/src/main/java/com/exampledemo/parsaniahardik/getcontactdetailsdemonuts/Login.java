@@ -40,7 +40,16 @@ public class Login extends AppCompatActivity {
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                if (!_emailText.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
+
+                    _emailText.setError("Invalid Email Address");
+
+                }else {
+
+                    login();
+
+                }
+
             }
         });
 

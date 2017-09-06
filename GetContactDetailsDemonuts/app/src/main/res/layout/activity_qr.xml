@@ -15,14 +15,16 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/Street"
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/Street"
             android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
             android:text="Contact QR"
-            android:textSize="18sp" />
+            android:textColor="@color/accent"
+            android:textSize="24sp" />
 
         <View
             android:layout_width="match_parent"
