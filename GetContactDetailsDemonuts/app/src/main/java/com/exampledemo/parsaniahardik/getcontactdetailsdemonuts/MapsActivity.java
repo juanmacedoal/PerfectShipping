@@ -103,22 +103,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menu) {
-        Intent intent;
+        final Intent intent = new Intent(getApplication(), QR.class);;
 
         switch (menu.getItemId()) {
             case R.id.accept:
-                intent = new Intent(getApplication(), QR.class);
-                intent.putExtra("street", street);
-                intent.putExtra("city", city);
-                intent.putExtra("state", state);
-                intent.putExtra("code", postalcode);
-                intent.putExtra("name", name);
-                intent.putExtra("phone", phone);
-                intent.putExtra("email", email);
-                startActivityForResult(intent, 1);
+
 
                 final ProgressDialog progressDialog = new ProgressDialog(this,
-                        R.style.AppTheme_Dark);
+                        R.style.AppTheme_Dark_Dialog);
                 progressDialog.setIndeterminate(true);
                 progressDialog.setMessage("Creating QR...");
                 progressDialog.show();
@@ -133,6 +125,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             public void run() {
                                 // On complete call either onLoginSuccess or onLoginFailed
                                 finish();
+
+                                intent.putExtra("street", street);
+                                intent.putExtra("city", city);
+                                intent.putExtra("state", state);
+                                intent.putExtra("code", postalcode);
+                                intent.putExtra("name", name);
+                                intent.putExtra("phone", phone);
+                                intent.putExtra("email", email);
+                                startActivityForResult(intent, 1);
                                 // onLoginFailed();
                                 progressDialog.dismiss();
                             }

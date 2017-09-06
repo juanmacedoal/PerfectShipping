@@ -118,47 +118,46 @@ public class Profile extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TextView tname = (TextView)view.findViewById(R.id.name);
-                TextView tphone = (TextView)view.findViewById(R.id.phone);
-                TextView temail = (TextView)view.findViewById(R.id.email);
-                TextView tstate = (TextView)view.findViewById(R.id.state);
-                TextView tcity = (TextView)view.findViewById(R.id.city);
-                TextView tstreet = (TextView)view.findViewById(R.id.Street);
-                TextView tcode = (TextView)view.findViewById(R.id.code);
 
-                String name = tname.getText().toString();
-                String phone= tphone.getText().toString();
-                String email = temail.getText().toString();
-                String state = tstate.getText().toString();
-                String city = tcity.getText().toString();
-                String street = tstreet.getText().toString();
-                String code = tcode.getText().toString();
-
-                Intent intent = new Intent(getApplication(), QR.class);
-                intent.putExtra("street", street);
-                intent.putExtra("city", city);
-                intent.putExtra("state", state);
-                intent.putExtra("code", code);
-                intent.putExtra("name", name);
-                intent.putExtra("phone", phone);
-                intent.putExtra("email", email);
-                intent.putExtra("comefrom", "profile");
-                startActivityForResult(intent, 1);
-
+                final View view1 = view;
                 final ProgressDialog progressDialog = new ProgressDialog(Profile.this,
-                        R.style.AppTheme_Dark);
+                        R.style.AppTheme_Dark_Dialog);
                 progressDialog.setIndeterminate(true);
                 progressDialog.setMessage("Creating QR...");
                 progressDialog.show();
-                progressDialog.getWindow().setGravity(Gravity.CENTER_HORIZONTAL);
 
 
                 new android.os.Handler().postDelayed(
                         new Runnable() {
                             public void run() {
-                                // On complete call either onLoginSuccess or onLoginFailed
+
                                 finish();
-                                // onLoginFailed();
+                                TextView tname = (TextView)view1.findViewById(R.id.name);
+                                TextView tphone = (TextView)view1.findViewById(R.id.phone);
+                                TextView temail = (TextView)view1.findViewById(R.id.email);
+                                TextView tstate = (TextView)view1.findViewById(R.id.state);
+                                TextView tcity = (TextView)view1.findViewById(R.id.city);
+                                TextView tstreet = (TextView)view1.findViewById(R.id.Street);
+                                TextView tcode = (TextView)view1.findViewById(R.id.code);
+
+                                String name = tname.getText().toString();
+                                String phone= tphone.getText().toString();
+                                String email = temail.getText().toString();
+                                String state = tstate.getText().toString();
+                                String city = tcity.getText().toString();
+                                String street = tstreet.getText().toString();
+                                String code = tcode.getText().toString();
+
+                                Intent intent = new Intent(getApplication(), QR.class);
+                                intent.putExtra("street", street);
+                                intent.putExtra("city", city);
+                                intent.putExtra("state", state);
+                                intent.putExtra("code", code);
+                                intent.putExtra("name", name);
+                                intent.putExtra("phone", phone);
+                                intent.putExtra("email", email);
+                                intent.putExtra("comefrom", "profile");
+                                startActivityForResult(intent, 1);
                                 progressDialog.dismiss();
                             }
                         }, 3000);
@@ -197,6 +196,12 @@ public class Profile extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Disable going back to the MainActivity
+        moveTaskToBack(true);
     }
 
 

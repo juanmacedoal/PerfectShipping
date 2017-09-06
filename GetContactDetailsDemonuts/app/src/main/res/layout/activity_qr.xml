@@ -3,12 +3,14 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:baselineAligned="false">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="121dp">
+        android:layout_height="121dp"
+        android:weightSum="1">
 
 
         <TextView
@@ -30,20 +32,21 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="80dp"
+            android:layout_width="121dp"
             android:layout_height="match_parent"
             android:layout_alignBottom="@+id/lcode"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_shipping" />
+            android:src="@drawable/ic_shipping"
+            android:layout_weight="0.90" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
         android:orientation="vertical">
 
         <View
@@ -58,7 +61,7 @@
             android:layout_gravity="center_horizontal"
             android:text="tname"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="18dp" />
+            android:textSize="24sp" />
 
         <View
             android:layout_width="match_parent"
@@ -71,7 +74,7 @@
             android:layout_height="wrap_content"
             android:text="lphone"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="12sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/emails"
@@ -79,7 +82,7 @@
             android:layout_height="wrap_content"
             android:text="tmail"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="12sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/Street"
@@ -88,7 +91,7 @@
             android:fadeScrollbars="true"
             android:text="Street"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="12sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/City"
@@ -96,7 +99,7 @@
             android:layout_height="wrap_content"
             android:text="City"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="12sp" />
+            android:textSize="18sp" />
 
 
         <TextView
@@ -105,7 +108,7 @@
             android:layout_height="wrap_content"
             android:text="State"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="12sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/Postalcode"
@@ -113,7 +116,7 @@
             android:layout_height="wrap_content"
             android:text="Postalcode"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="12sp" />
+            android:textSize="18sp" />
 
 
 

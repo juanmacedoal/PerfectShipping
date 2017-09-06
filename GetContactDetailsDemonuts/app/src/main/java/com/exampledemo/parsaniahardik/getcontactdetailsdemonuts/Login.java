@@ -51,6 +51,8 @@ public class Login extends AppCompatActivity {
                 // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), Signup.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
+                finish();
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
     }
@@ -61,8 +63,27 @@ public class Login extends AppCompatActivity {
            String.valueOf(_passwordText.getText()).equals("israel123"))
         {
             Log.d(TAG, "Login");
-            Intent intent = new Intent(getApplicationContext(), Profile.class);
-            startActivity(intent);
+            final ProgressDialog progressDialog = new ProgressDialog(Login.this,
+                    R.style.AppTheme_Dark_Dialog);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage("Authenticating...");
+            progressDialog.show();
+
+            String email = _emailText.getText().toString();
+            String password = _passwordText.getText().toString();
+
+            // TODO: Implement your own authentication logic here.
+
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            // On complete call either onLoginSuccess or onLoginFailed
+                            onLoginSuccess();
+                            // onLoginFailed();
+                            progressDialog.dismiss();
+                        }
+                    }, 3000);
+
         }else if (!validate())
         {
             onLoginFailed();
@@ -71,26 +92,7 @@ public class Login extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(Login.this,
-                R.style.AppTheme);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
-
-        // TODO: Implement your own authentication logic here.
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 6000);
     }
 
 
@@ -115,6 +117,8 @@ public class Login extends AppCompatActivity {
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
         finish();
+        Intent intent = new Intent(getApplicationContext(), Profile.class);
+        startActivity(intent);
     }
 
     public void onLoginFailed() {
