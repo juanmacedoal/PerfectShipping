@@ -221,6 +221,7 @@ public class Profile extends AppCompatActivity {
         }
         if (id == R.id.logout) {
             finish();
+            System.exit(0);
             return true;
         }
 
